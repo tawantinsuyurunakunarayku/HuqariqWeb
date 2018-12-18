@@ -1,0 +1,78 @@
+{% extends 'home.html'%}
+{% load static from staticfiles %}
+
+{% block header %}
+{% endblock %}
+
+
+{% block main-desk %}
+
+<div class="row">
+	<div class="col-sm-9 col-sm-offset-1">
+		<h2>Preguntas frecuentes</h2>
+
+		<p>Si no pudiste asistir a la capacitación, o quieres recordar como usar al máximo esta herramienta, mira nuestro video guía:</p>
+		<div style="margin: 0 auto; text-align: center; padding: 15px 0;">
+			<iframe width="70%" height="250px"
+				src="https://www.youtube.com/embed/DhWVHEkCaSs"
+				frameborder="0" allowfullscreen>
+			</iframe>
+		</div>
+
+		<ol>
+		<li>	
+			<h4>¿Debo traducir del quechua al castellano?</h4>
+			<p>No. Debes escribir en quechua lo que escuches en quechua. Si escuchas préstamos del castellano, escríbelos en castellano.
+			</p>
+		</li>
+
+		<li>
+			<h4>¿Debo traducir del castellano al quechua?</h4>
+			<p>No. Si todo el audio esta en español, marca la opción <b>"El audio tiene solo voz en español"</b>.
+			</p>
+		</li>
+
+		<li>
+			<h4>¿Qué hago si hay más de dos locutores o hablantes?</h4>
+			<p>Escribe de manera continua lo que cada uno dice. No utilices etiquetas como <i>Locutor 1:</i>, <i>Locutor 2:</i>.
+			</p>
+		</li>
+
+		<li>
+			<h4>¿Qué hago si el audio contiene voz y música?</h4>
+			<p>Si la música es de fondo y logras distinguir lo que se dice en quechua, transcribe en quechua y marca la opción  <b>"El audio tiene voz con música de fondo"</b>. 
+			</p>
+		</li>
+
+		<li>
+			<h4>No carga el audio ¿Qué hago?</h4>
+			<p>Nuestra página solo funciona con navegadores Chrome y Firefox, mas no con Internet Explorer. Si el problema persiste, contáctate con nosotros en la sección <a href="{% url 'contact' %}">Consultas</a>.
+			</p>
+		</li>
+
+		<li>
+			<h4>¿Qué hago si no entiendo una palabra?</h4>
+			<p>Escribe la mejor aproximación que puedas de acuerdo al contexto.
+			</p>
+		</li>
+
+		<li>
+			<h4>¿Revisan si mi escritura esta bien?</h4>
+			<p>No podemos revisar manualmente cada transcripción, por eso nos valemos de un programa para normalizar la escritura de todos. Sin embargo, este programa no es perfecto.<br>
+			Lo mejor es revisar constantemente los videos de capacitación y/o el texto de Oscar Chavez, a fin de conseguir una transcripción de buena calidad desde el origen.
+			</p>
+		</li>
+
+		<li>
+			<h4>Tengo dudas sobre la escritura ¿Qué hago?</h4>
+			<p>Por favor revisa los siguientes <a href="https://www.youtube.com/playlist?list=PLWDrEPTsXAxOM300pX0rRoBYpcygn5wGi" style="color: blue" target="_blank">videos</a>.
+			</p>
+		</li>
+
+	</ol>
+
+	</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block title %}Grabación de Voz (Quechua){% endblock %}
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'website/css/d3.slider.min.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+
+      <header>
+        <h1>Grabación de voz (Quechua)</h1>
+      </header>
+
+      <section class="top-display">
+	        <div class="welcome-display">
+              !Gracias por contribuir a este corpus de voz!
+              <br/>
+              Por favor, comparte esta página con todos los quechua hablantes para poder tener
+              un archivo de voces Quechua tan grande como sea posible.
+	</div>
+      </section>
+
+    </div>
+
+    <footer>
+        <!-- <a href="/legal">Participant Agreement</a> -->
+    </footer>
+
+{% endblock %} 

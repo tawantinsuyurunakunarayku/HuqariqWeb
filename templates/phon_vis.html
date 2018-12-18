@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block title %}Visualizador fonetico {% endblock %}
+
+{% block d3_version %}
+<script src="https://d3js.org/d3.v4.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-7 col-md-offset-2">
+			<h1>Visualizador de Distribución de Fonemas</h1>
+			<form method="post" id="phon-form">
+				{% csrf_token %}
+				<div id="phon-text-button">
+					<span>Pegue el texto de las frases aquí</span>
+
+					
+					<button id="save-btn" type="submit" class="btn btn-primary" name="save" style="float:right;margin-bottom:10px">Enviar</button>
+					<button id="an-btn" type="submit" class="btn btn-primary" name="analizar" style="float:right;margin-bottom:10px;margin-right:20px">Analizar</button>
+				</div>
+				<div class="row">
+          			<div class="form-group col-md-12">
+          				{{ form.text.errors }}
+          				{{ form.text }}
+          			</div>
+      			</div>
+			</form>
+			<span class="info">Nro. de palabras en total: {{ tokens }}</span>
+			<span class="info">Nro. de palabras en el vocabulario: {{ types }}</span>
+			<span class="info">Nro. de fonemas: {{ nphonemes }}</span>
+			{% if saved %}
+			<h3>Texto enviado con éxito!</h3>
+			{% endif %}
+		</div>
+		<div class="col-md-11 col-md-offset-1" id="plot">
+			{% if plot %}
+			<svg width="960" height="500"></svg>
+			{% endif %}
+		</div>
+	</div>
+	
+</div>
+
+<style>
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis--x path {
+  display: none;
+}
+.info {
+  padding: 0 10px;
+}
+</style>
+
+<script type="text/javascript">
+
+var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom;
+
+var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+    y = d3.scaleLinear().rangeRound([height, 0]);
+
+var g = svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.tsv("{% static 'phone_counts.tsv' %}", function(d) {
+  d.frequency = +d.frequency;
+  return d;
+}, function(error, data) {
+  if (error) throw error;
+
+  x.domain(data.map(function(d) { return d.phoneme; }));
+  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+
+  g.append("g")
+      .attr("class", "axis axis--x")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  g.append("g")
+      .attr("class", "axis axis--y")
+      .call(d3.axisLeft(y).ticks(10, "%"))
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("Frequency");
+
+  g.selectAll(".bar")
+    .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.phoneme); })
+      .attr("y", function(d) { return y(d.frequency); })
+      .attr("width", x.bandwidth())
+      .attr("height", function(d) { return height - y(d.frequency); })
+    .append("title")
+      .text(function(d){ return d.frequency*100.0 + "%"});
+});
+
+</script>
+{% endblock %}

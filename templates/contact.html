@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid" style="height:100%;width:100%;position:fixed" id="fondo">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 col-xs-12 col-sm-6 col-sm-offset-3" style="vertical-align: middle">
+      <div id="signup-wrapper">
+        
+        <h1 style="text-align:center; color: #ff5400">Contáctanos</h1>
+        <form method="post" style="padding-bottom:10px">
+          {% csrf_token %}
+                    
+          <div class="form-group row">
+            {{ form.name.errors }}
+            <label for="{{ form.name.id_for_label }}" class="col-4 col-form-label">Nombre</label>
+            <div class="col-8">
+              {{ form.name }}
+            </div>
+          </div>
+
+          <div class="form-group row">
+            {{ form.email.errors }}
+            <label for="{{ form.email.id_for_label }}" class="col-4 col-form-label">E-mail</label>
+            <div class="col-8">
+              {{ form.email }}
+            </div>
+          </div>
+
+          <div class="form-group row">
+            {{ form.subject.errors }}
+            <label for="{{ form.subject.id_for_label }}" class="col-4 col-form-label">Asunto</label>
+            <div class="col-8">
+              {{ form.subject }}
+            </div>
+          </div>
+
+          <div class="form-group row">
+            {{ form.text.errors }}
+            <label for="{{ form.text.id_for_label }}" class="col-4 col-form-label">Consulta</label>
+            <div class="col-8">
+              {{ form.text }}
+            </div>
+          </div>
+
+        <div style="text-align: center;padding-top:20px;">
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

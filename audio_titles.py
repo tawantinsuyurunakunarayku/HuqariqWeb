@@ -1,0 +1,17 @@
+audio_titles = [
+	"Radio Amauta, Ayacucho",
+	"Radio Titanka, Ayacucho",
+	"Radio Andahuaylas, Ayacucho",
+	"Radio Apurimac, Ayacucho",
+	"Radio Inti Raymi, Cusco",
+	"Radio Sicuani, Cusco",
+	"Radio Juliaca, Puno",
+	"Radio Onda Azul, Puno",
+	"Radio Pachamama, Puno",
+	"Programa TvPeru Ñuqanchik",
+	"Constitución del Perú",
+	"Cuento: Isidora la ahorradora",
+	"Declaraciones Académicas",
+	"Taqaqa Runa",
+	"Cuentos del MINEDU",
+]

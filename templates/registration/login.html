@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid" style="height:100%;width:100%;" id="fondo">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 col-xs-12 col-sm-6 col-sm-offset-3" style="vertical-align: middle; padding-bottom: 250px;">
+			<div id="login-wrapper" style="background-color: white">
+				<h1 style="text-align:center; color: #840c67"> <b>¡Bienvenido!</b> </h1>
+				<p style="text-align: center; color: #000000"> Inteligencia Artificial para facilitar la masificación de uso de idioma Quechua, lengua oficial del Perú </p>
+
+				<form method="post" style="padding-bottom:30px">
+					  {% csrf_token %}
+
+				    <p style="text-align: center; color: #000000">¿Primera vez que nos visitas?  Mira este video guía primero.
+				    <a href="https://www.youtube.com/watch?v=yg5ZqaNmuio" target="_blank" style="color:black">
+					      <i class="fa solo fa-youtube-square fa-5" aria-hidden="true" style="font-size: 3em"></i>
+				    </a></p>
+					{% if form.errors %}
+					<p style="color: red;">Su correo y contraseña no coinciden. Por favor inténtelo de nuevo</p>
+					{% endif %}
+					<div class="form-group row">
+						<label for="{{ form.username.id_for_label }}" class="col-2 col-form-label"> <b>Correo</b></label>
+				  		<div class="col-10">
+				  			<input class="form-control"
+				  				   type="text"
+				  				   maxlength="50"
+				  				   placeholder="ingrese correo"
+				  				   name="username"
+				  				   autofocus
+				  				   required
+				  				   id="{{ form.username.id_for_label }}">
+				  		</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="{{ form.password.id_for_label }}" class="col-2 col-form-label"><b>Contraseña</b></label>
+				  		<div class="col-10">
+				  			<input class="form-control"
+				  				   type="password"
+				  				   name="password"
+				  				   required
+				  				   maxlength="30"
+				  				   placeholder="ingrese contraseña"
+				  				   id="{{ form.password.id_for_label }}">
+				  		</div>
+					</div>
+
+				<div style="text-align: center;padding-top:20px;">
+					<button type="submit" class="btn btn-primary">Iniciar sesión</button>
+				</div>
+				</form>
+
+				<p>¿Aún no tienes cuenta? <a href="{% url 'signup' %}" style="display:inline-block">Regístrate aqui</a></p>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

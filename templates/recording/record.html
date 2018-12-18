@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block title %}Grabación de Voz (Quechua){% endblock %}
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'website/css/d3.slider.min.css' %}">
+<link rel="stylesheet" href="{% static 'website/css/recording.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid" style="height:100%;width:100%;position:fixed">
+    <div class="row" style="height:100%" id="wrapper">
+
+    <!--info de usuario + stats -->
+    <div id="side-menu">
+      <div id="profile">
+        <div class="portrate"> </div>
+        <h4>Bienvenido</h4>
+        <h3>{{ username }}</h3>
+      </div>
+      <hr>
+      <ul class="nav">
+        <li><a href="{% url 'audio_recording' %}"><span class="glyphicon glyphicon-star" style="padding-right: 5px"></span><span>Grabar Voz</span></a></li>
+        <li><a href="{% url 'faq' %}" ><span><span class="glyphicon glyphicon-info-sign" style="padding-right: 5px"></span><span>Preguntas frecuentes</span></a></li>
+        <li><a href="{% url 'contact' %}" ><span><span class="glyphicon glyphicon-question-sign" style="padding-right: 5px"></span><span>Consultar</span></a></li>
+            <li><a href="{% url 'logout' %}" ><span><span class="glyphicon glyphicon-log-out" style="padding-right: 5px"></span><span>Cerrar sesión</span></a></li>
+      </ul>
+    </div>
+
+    <div id="page-content-wrapper" class="scroll-area">
+        <button type="button" class="navbar-toggle" id="menu-toggle" style="display:inline-block">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+
+    <div class="wrapper">
+      <header>
+        <h1>Grabación de Voz (Quechua)</h1>
+      </header>
+
+      <section class="top-display">
+	        <div class="directions">
+              1. Antes de grabar escuche la locución. Para eso pulse el botón
+              <i class="fa fa-play"></i>.
+              <br/>
+              2. Para iniciar pulse el botón GRABAR y para terminar pulse el botón FINALIZAR.
+              3. Puede enviar 1 a 1 los audios, o en grupo.
+	        </div>
+	<div class="progress-display">
+	</div>
+	<div>
+      <div class="info-display" style="display: none;"></div>
+      <audio controls="controls" class="audio-hint"></audio>
+	</div>
+      </section>
+
+      <section class="main-controls">
+        <canvas class="visualizer"></canvas>
+        <div id="buttons">
+          <button class="record">Grabar</button>
+          <button class="stop">Finalizar</button>
+          <button class="upload">Enviar audios</button>
+        </div>
+      </section>
+
+      <section class="sound-clips">
+
+          <!-- This is left here as a helper for testing the style of the clips
+               If you want to edit their appearance without having to record clips,
+               uncomment this and reload the page. Remember to comment it again when done!
+               <article class="clip">
+               <audio controls></audio>
+               <p>Sample clip name</p>
+               <button class="delete">Delete</button>
+               </article>
+             -->
+
+      </section>
+
+    </div>
+
+    {% if is_collao %}
+    <div style="display: none" id="hidRegion">collao</div>
+    {% else %}
+    <div style="display: none" id="hidRegion">chanca</div>
+    {% endif %}
+
+    </div>
+    <footer>
+        <a href="/legal">Acuerdo de participación</a>
+    </footer>
+    <div></div>
+    <script type="text/javascript" src="{% static 'website/js/recording.js' %}?v=0.0.2"></script>
+
+    </div>
+</div>
+{% endblock %}

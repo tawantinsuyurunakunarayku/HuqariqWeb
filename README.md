@@ -1,2 +1,3 @@
 # HuqariqWeb
-Web version of our voice corpora collector
+
+Web application for labeling and recording of Quechua audios, as part of the project e-Quechua. See https://siminchikkunarayku.pe

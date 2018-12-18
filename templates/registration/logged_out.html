@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid" style="height:100%;width:100%;position:fixed" id="fondo">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 col-xs-12 col-sm-6 col-sm-offset-3" style="vertical-align: middle">
+      <div id="signup-wrapper" style="margin-top: 100px; text-align: center;">
+        <h1>Muchas gracias y vuelva pronto!</h1>
+        <h3><a href="{% url 'audio_recording' %}" style="text-decoration: underline">Volver al inicio</a></h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
