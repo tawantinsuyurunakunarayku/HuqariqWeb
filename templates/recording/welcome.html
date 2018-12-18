@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block title %}Grabación de Voz (Quechua){% endblock %}
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'website/css/d3.slider.min.css' %}">
+<link rel="stylesheet" href="{% static 'website/css/recording.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+      <header>
+          <h1>Proyecto Quechua ASR <br/>
+              <h2>TECNOLOGIAS DE LA INFORMACION Y COMUNICACION PARA
+                  LA PRESERVACION DE LENGUAS EN PELIGRO DE EXTINCION</h2>
+          </h1>
+      </header>
+
+  <section class="top-display">
+	    <div class="welcome-display">
+          La investigación tiene por objetivo la creación y permanente
+          ampliación de una base de datos fonéticos y textuales, de los idiomas
+          autóctonos sudamericanos, esta base de datos se denomina Corpus
+          Lingüístico.
+      </div>
+	    <div class="welcome-display">
+          La alimentación de la base de datos implica realizar tres tipos de acciones: <br/>
+          1. Compilación de lectura de texto quechua: <br/>
+          a) Compilar y revisar documentos escritos tomando en cuenta la grafía
+          normalizada por el Ministerio de Educación, por ejemplo la RM 1218-85
+          ED, en el caso del quechua sureño. <br/>
+          b) Solicitar a hablantes de nacimiento de las lenguas autóctonas hacer
+          la lectura de los textos seleccionados. <br/>
+          2. Compilación de material en audiovisual: <br/>
+          a) Recolectar programas abiertos y públicos narrados en idiomas
+          autóctonos producidos por medios de comunicación. <br/>
+          b) Trascripción de los audios. <br/>
+          3. Realizar grupos focales y transcripción: <br/>
+          a) Elaborar un temario de escenarios y sus guiones respectivos. <br/>
+          b) Convocar a hablantes de nacimiento de las lenguas autóctonas en
+          grupos focales para la grabación del conversatorio y transcripción.
+	        <div class="welcome-display">
+              Se convocará a voluntarios hablantes de nacimiento de lenguas
+              autóctonas y residentes en cualquier parte del mundo. En el primer
+              tipo de acción se solicitará la participación de personas en la
+              lectura de los textos compilados. En el segundo tipo de acción se
+              solicitará la asistencia de personas para la transcripción del
+              audio. Finalmente, para los grupos focales se convocará a un grupo
+              de personas para conversar diferentes temas de la vida cotidiana
+              con la finalidad de grabar los audios sonidos y luego
+              transcribirlos.
+          </div>
+          <div class="welcome-display">
+              El proyecto considera que no son los contenidos (ideas) de las
+              grabaciones los que son materia de investigación, sino el acopio
+              del léxico a modo de un diccionario de voces. Por esta razón es
+              pertinente informar a los convocados y colaboradores los
+              siguientes datos: <br/>
+              a) La investigación busca registrar el léxico vigente de las
+              lenguas autóctonas. <br/>
+              b) El objetivo es acopiar el léxico para construir una base de
+              datos que pueda aplicarse en el desarrollo de instrumentos
+              computacionales. <br/>
+              c) Se seguirán normas éticas, cada participante está habilitado
+              para descargar una copia de este formulario de consentimiento
+              informado.
+          </div>
+	<div class="legal">
+      Acuerdo de participación:
+
+	</div>
+	<div class="legal">
+      1. Como participante en este estudio, se le pedirá 1) realizar las
+      transcripciones de los audios que recibirá, 2) realizar la
+      locución de textos que recibirá o 3) realizar la repetición oral
+      de audios que recibirá. En los casos 2) y 3) este sitio web le
+      pedirá permiso para usar su micrófono y le pedirá que hable
+      palabras sencillas que vamos a grabar (el "estudio"). Estas
+      palabras aparecerán en la pantalla, una tras otra, a lo largo de
+      cinco minutos, con pausas cortas. Cuando el micrófono esté activo,
+      verá una pantalla de osciloscopio que muestra una forma de onda
+      que refleja el audio recibido. El botón de grabación se pondrá
+      rojo cuando se esté grabando una palabra
+      (cada una será un "clip"). Los clips se mostrarán en la parte
+      inferior de la página web donde podrá revisar y/o eliminar alguno
+      de ellos antes de enviarlos. Los clips solo serán enviados cuando
+      pulse el botón CARGAR o el botón ACEPTAR, que aparecerán una vez
+      que haya completado todas las palabras solicitadas. En cualquier
+      momento puede presionar el botón DETENER para pausar el proceso de
+      grabación. Saliendo de este sitio web eliminará todas las copias
+      locales de los clips.
+  </div>
+	<div class="legal">
+      2.	Su participación es voluntaria y usted puede optar por cesar en
+      cualquier momento. Usted no será compensado por su participación.
+      Si decide participar en este estudio, debe estar en reposo, en un
+      lugar silencioso y sólo debe hablar las palabras solicitadas. Una
+      habitación cerrada es un buen lugar para esto.
+	</div>
+	<div class="legal">
+      3.	Al participar, aceptas que los investigadores pueden usar los
+      clips para desarrollar y mejorar sus productos y compartir los
+      clips con otros, incluyendo el público en general, por ejemplo,
+      como parte de un conjunto de datos público para facilitar la
+      investigación. Al participar, comprendes que tu voz, sola o en
+      combinación con otra información, podría Identificarte. Al
+      participar, específicamente renuncias a cualquier potencial
+      derecho de propiedad intelectual, derecho de publicidad o derecho
+      de privacidad y liberas a los investigadores u otros de cualquier
+      compromiso relacionado al uso o la compartición de tus clips.
+  </div>
+	<div class="legal">
+      4. EXPRESA O IMPLÍCITAMENTE, LOS INVESTIGADORES NO OFRECEN
+      GARANTÍA ALGUNA CON RESPECTO AL ESTUDIO Y EXPRESAMENTE RENUNCIAN
+      CUALQUIER GARANTÍA, EXPRESA O IMPLÍCITA. EN NINGÚN CASO, ALGUNA DE
+      LAS PARTES SERÁ RESPONSABLE POR CUALQUIER DAÑO.
+  </div>
+	<div class="legal">
+      5. Este acuerdo no crea ninguna relación de contrato o asociación.
+      Este acuerdo no es asignable o transferible por ti. Este acuerdo
+      es el acuerdo completo de las partes sobre este tema, sustituyendo
+      cualquier acuerdo anterior o paralelo. Las enmiendas deben hacerse
+      por escrito. No hacer cumplir cualquiera de las disposiciones de
+      este acuerdo no constituirá una renuncia. Este acuerdo se rige por
+      las leyes peruanas, el lugar exclusivo para cualquier disputa será
+      la provincia de Lima.
+	</div>
+	<div class="legal">
+      Al hacer clic en ACEPTO, confirmas que tienes al menos dieciocho
+      años de edad, comprendes los puntos anteriores y aceptas la
+      recopilación, uso y uso compartido de los clips por parte de los
+      investigadores.
+  </div>
+  </section>
+
+  <section class="main-controls">
+      <div id="buttons">
+          <a href="{% url 'audio_recording' %}" class="continue-link">
+              <button class="continue" id="ido">ACEPTO</button>
+          </a>
+      </div>
+  </section>
+
+  <script>
+   var agr = document.querySelector('#ido');
+   agr.onclick = function() {
+       document.cookie = 'agreement_done=true';
+   };
+  </script>
+{% endblock %}

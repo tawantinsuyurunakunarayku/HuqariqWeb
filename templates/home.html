@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block title %}Transcriptor Quechua {% endblock %}
+
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'website/css/d3.slider.min.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid" style="height:100%;width:100%;">
+  <div class="row" style="height:100%" id="wrapper">
+
+    <!--info de usuario + stats -->
+    <div id="side-menu">
+      <div id="profile">
+        <div class="portrate"> </div>
+        <h4>Bienvenido</h4>
+        <h3>{{ username }}</h3>
+      </div>
+      <hr>
+      <ul class="nav">
+        <li><a href="{% url 'audio_recording' %}"><span class="glyphicon glyphicon-star" style="padding-right: 5px"></span><span>Grabar Voz</span></a></li>
+        <li><a href="{% url 'faq' %}" ><span><span class="glyphicon glyphicon-info-sign" style="padding-right: 5px"></span><span>Preguntas frecuentes</span></a></li>
+        <li><a href="{% url 'contact' %}" ><span><span class="glyphicon glyphicon-question-sign" style="padding-right: 5px"></span><span>Consultar</span></a></li>
+            <li><a href="{% url 'logout' %}" ><span><span class="glyphicon glyphicon-log-out" style="padding-right: 5px"></span><span>Cerrar sesión</span></a></li>
+      </ul>
+    </div>
+
+    <!-- main desk -->
+    <div id="page-content-wrapper">
+      <!-- toggle button -->
+      <div class="row">
+        <button type="button" class="navbar-toggle" id="menu-toggle" style="display:inline-block">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        {% block header %}
+        <h1 style="display:inline-block">{{ audio_title }}</h1>
+
+        <div class="alert alert-danger" style="display:inline-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>¡Graba tu voz!</strong><br/>
+            Ve nuestra nueva iniciativa <a href="{% url 'audio_recording' %}">AQUÍ</a>.
+        </div>
+
+        {% if show_hms %}
+        <div id="hours_trans">
+           <h4>Horas transcritas</h4>
+           <span>{{ hours }}:{{ minutes }}:{{ seconds }}</span>
+        </div>
+        {% endif %}
+        {% endblock %}
+      </div>
+
+      {% block main-desk %}
+      <div class="container-audio" >
+        <div id="waveform"></div>
+        <div id="waveform-timeline"></div>
+        <div id="rangeslider" style="margin: 20px 0">
+        </div>
+        <div style="text-align: center; margin-top:30px">
+          <button class="btn btn-primary btn-custom" onclick="wavesurfer.play()" style="padding: 10px">
+            <i class="glyphicon glyphicon-play"></i>
+          </button>
+          <button class="btn btn-primary btn-custom" onclick="wavesurfer.pause()" style="padding: 10px">
+            <i class="glyphicon glyphicon-pause"></i>
+          </button>
+          <button class="btn btn-primary btn-custom" onclick="wavesurfer.stop()" style="padding: 10px">
+            <i class="glyphicon glyphicon-stop"></i>
+          </button>
+          <button class="btn btn-primary btn-custom" onclick="wavesurfer.play(0)" style="padding: 10px">
+            <i class="glyphicon glyphicon-repeat"></i>
+          </button>
+
+          <select id= "velocidad" name="select" class="btn btn-primary btn-custom" onchange="javascript:ShowSelected();">
+                <option value="0">Velocidad</option>
+                <option value="0.75">0.75x</option>
+                <option value="0.8">0.80x</option>
+                <option value="0.85">0.85x</option>
+                <option value="1">1x</option>
+
+          </select>
+        </div>
+      </div>
+
+      <script type="text/javascript">
+              function ShowSelected(){
+              /* Para obtener el valor */
+              var cod = document.getElementById("velocidad").value;
+              wavesurfer.backend.setPlaybackRate(cod);
+    }
+  </script>
+
+      <form method="post" id="main-form" >
+        {% csrf_token %}
+        {{ form.start }}
+        {{ form.end }}
+        <div class="row">
+
+          <div class="form-group col-md-6">
+            <h3>Transcripcion</h3>
+            {{ form.text.errors }}
+            {{ form.text }}
+            <!--
+            {% if collao %}
+            <div style="margin-top: 10px">
+              <div style="width:70%; display: inline-block;">
+                <span id="norm-text">{{ norm_text }}</span>
+              </div>
+              <div style="width:26%; display: inline-block; text-align: center">
+                <button id="spellchk-btn" type="submit" class="btn btn-info" name="spellchk-btn" style="margin-bottom: 5px">Verificar Ortografía</button>
+                <button id="use-btn" type="button" class="btn btn-success" name="use-btn">Usar</button>
+              </div>
+            </div>
+            {% endif %}
+            -->
+          </div>
+
+
+
+          <!-- opciones extra -->
+          <div class="form-group col-md-5">
+            <h3>Calidad del audio</h3>
+            {{ form.quality }}
+          </div>
+        </div>
+
+      </form>
+
+      <div class="row" style="text-align: center; margin: 10px auto">
+        <button id="submit-btn" type="submit" class="btn btn-primary" name="enviar">Enviar</button>
+      </div>
+
+      <div id="id-suc" data-succedded={{ succedded }} data-save-error={{ save_error }}></div>
+
+      <div class="bb-alert alert alert-info" style="display:none;">
+        <span>The examples populate this alert with dummy content</span>
+      </div>
+
+      {% endblock %}
+    </div>
+
+<script>
+var audio_filename = null;
+{% with 'audios/'|add:audio_fn as afn %}
+  audio_filename = "{% static afn %}";
+{% endwith %}
+</script>
+
+<script type="text/javascript" src="{% static 'website/js/core.js' %}?v=0.0.2"></script>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+    <div class="wrapper">
+
+      <header>
+          <h1>Acuerdo de Participación</h1>
+      </header>
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block title %}Grabación de Voz (Quechua){% endblock %}
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'website/css/d3.slider.min.css' %}">
+{% endblock %}
+
+{% block content %}
+      <section class="top-display">
+	        <div class="legal"> 
+              Acuerdo de participación:
+
+	        </div>
+	        <div class="legal">
+              1. Como participante en este estudio, se le pedirá 1) realizar las
+              transcripciones de los audios que recibirá, 2) realizar la
+              locución de textos que recibirá o 3) realizar la repetición oral
+              de audios que recibirá. En los casos 2) y 3) este sitio web le
+              pedirá permiso para usar su micrófono y le pedirá que hable
+              palabras sencillas que vamos a grabar (el "estudio"). Estas
+              palabras aparecerán en la pantalla, una tras otra, a lo largo de
+              cinco minutos, con pausas cortas. Cuando el micrófono esté activo,
+              verá una pantalla de osciloscopio que muestra una forma de onda
+              que refleja el audio recibido. El botón de grabación se pondrá
+              rojo cuando se esté grabando una palabra
+              (cada una será un "clip"). Los clips se mostrarán en la parte
+              inferior de la página web donde podrá revisar y/o eliminar alguno
+              de ellos antes de enviarlos. Los clips solo serán enviados cuando
+              pulse el botón CARGAR o el botón ACEPTAR, que aparecerán una vez
+              que haya completado todas las palabras solicitadas. En cualquier
+              momento puede presionar el botón DETENER para pausar el proceso de
+              grabación. Saliendo de este sitio web eliminará todas las copias
+              locales de los clips.
+          </div>
+	        <div class="legal">
+              2.	Su participación es voluntaria y usted puede optar por cesar en
+              cualquier momento. Usted no será compensado por su participación.
+              Si decide participar en este estudio, debe estar en reposo, en un
+              lugar silencioso y sólo debe hablar las palabras solicitadas. Una
+              habitación cerrada es un buen lugar para esto.
+	        </div>
+	        <div class="legal">
+              3.	Al participar, aceptas que los investigadores pueden usar los
+              clips para desarrollar y mejorar sus productos y compartir los
+              clips con otros, incluyendo el público en general, por ejemplo,
+              como parte de un conjunto de datos público para facilitar la
+              investigación. Al participar, comprendes que tu voz, sola o en
+              combinación con otra información, podría Identificarte. Al
+              participar, específicamente renuncias a cualquier potencial
+              derecho de propiedad intelectual, derecho de publicidad o derecho
+              de privacidad y liberas a los investigadores u otros de cualquier
+              compromiso relacionado al uso o la compartición de tus clips.
+          </div>
+	        <div class="legal">
+              4. EXPRESA O IMPLÍCITAMENTE, LOS INVESTIGADORES NO OFRECEN
+              GARANTÍA ALGUNA CON RESPECTO AL ESTUDIO Y EXPRESAMENTE RENUNCIAN
+              CUALQUIER GARANTÍA, EXPRESA O IMPLÍCITA. EN NINGÚN CASO, ALGUNA DE
+              LAS PARTES SERÁ RESPONSABLE POR CUALQUIER DAÑO.
+          </div>
+	        <div class="legal">
+              5. Este acuerdo no crea ninguna relación de contrato o asociación.
+              Este acuerdo no es asignable o transferible por ti. Este acuerdo
+              es el acuerdo completo de las partes sobre este tema, sustituyendo
+              cualquier acuerdo anterior o paralelo. Las enmiendas deben hacerse
+              por escrito. No hacer cumplir cualquiera de las disposiciones de
+              este acuerdo no constituirá una renuncia. Este acuerdo se rige por
+              las leyes peruanas, el lugar exclusivo para cualquier disputa será
+              la provincia de Lima.
+	        </div>
+	        <div class="legal">
+              Al hacer clic en ACEPTO, confirmas que tienes al menos dieciocho
+              años de edad, comprendes los puntos anteriores y aceptas la
+              recopilación, uso y uso compartido de los clips por parte de los
+              investigadores.
+          </div>
+      </section>
+
+    </div>
+
+    <!-- <footer>
+         <a href="/legal">Acuerdo de participación</a>
+         </footer>
+       -->
+
+{% endblock %}

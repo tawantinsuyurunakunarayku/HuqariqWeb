@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid" style="height:100%;width:100%;" id="fondo">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 col-xs-12 col-sm-6 col-sm-offset-3" style="vertical-align: middle">
+      <div id="signup-wrapper">
+        <h1 style="text-align:center; color: #ff5400">Regístrate</h1>
+        <form method="post" id="signupForm" style="padding-bottom:10px" data-region-url="{% url 'ajax_load_region' %}" >
+          {% csrf_token %}
+
+          <div class="form-group row">
+            {{ form.complete_name.errors }}
+            <label for="{{ form.complete_name.id_for_label }}" class="col-4 col-form-label">Primer nombre y Primer apellido</label>
+            <div class="col-8">
+              {{ form.complete_name }}
+            </div>
+          </div>
+
+          <div class="form-group row">
+            {{ form.email.errors }}
+            <label for="{{ form.email.id_for_label }}" class="col-4 col-form-label">E-mail</label>
+            <div class="col-8">
+                {{ form.email }}
+            </div>
+          </div>
+
+          <div class="form-group row">
+              {{ form.phone.errors }}
+              <label for="{{ form.phone.id_for_label }}" class="col-4 col-form-label">Celular</label>
+              <div class="col-8">
+                  {{ form.phone }}
+              </div>
+          </div>
+
+          <div class="form-group row">
+              {{ form.genero.errors }}
+              <label for="{{ form.genero.id_for_label }}" class="col-4 col-form-label">Genero</label>
+              <div class="col-8">
+                  {{ form.genero }}
+              </div>
+          </div>
+
+          <div class="form-group row">
+              {{ form.birthdate.errors }}
+              <label for="{{ form.birthdate.id_for_label }}" class="col-4 col-form-label">Fecha de nacimiento</label>
+              <div class="col-8">
+                  {{ form.birthdate }}
+              </div>
+          </div>
+
+          <div class="form-group row">
+              {{ form.country.errors }}
+              <label for="{{ form.country.id_for_label }}" class="col-4 col-form-label">País</label>
+              <div class="col-8">
+                  {{ form.country }}
+              </div>
+          </div>
+
+          <div class="form-group row">
+              {{ form.departamento.errors }}
+              <label for="{{ form.departamento.id_for_label }}" class="col-4 col-form-label">Departamento</label>
+              <div class="col-8">
+                  {{ form.departamento }}
+              </div>
+          </div>
+
+          <div class="form-group row">
+              {{ form.provincia.errors }}
+              <label for="{{ form.provincia.id_for_label }}" class="col-4 col-form-label">Provincia</label>
+              <div class="col-8">
+                  {{ form.provincia }}
+              </div>
+          </div>
+
+          <div class="form-group row">
+              {{ form.distrito.errors }}
+              <label for="{{ form.distrito.id_for_label }}" class="col-4 col-form-label">Distrito</label>
+              <div class="col-8">
+                  {{ form.distrito }}
+              </div>
+          </div>
+
+          <div class="form-group row">
+            {{ form.password1.errors }}
+            <label for="{{ form.password1.id_for_label }}" class="col-4 col-form-label">Contraseña(*)</label>
+            <div class="col-8">
+              {{ form.password1 }}
+            </div>
+          </div>
+
+          <div class="form-group row">
+            {{ form.password2.errors }}
+            <label for="{{ form.password2.id_for_label }}" class="col-4 col-form-label">Confirme contraseña(*)</label>
+            <div class="col-8">
+                {{ form.password2 }}
+            </div>
+          </div>
+
+
+        <div style="text-align: center;padding-top:20px;">
+          <button type="submit" class="btn btn-primary">Registrar</button>
+        </div>
+        </form>
+        <p>(*) Campo requerido</p>
+        <p>¿Ya tienes cuenta? <a href="{% url 'login' %}" style="display:inline-block">Ingresa aquí</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+ $("#id_country").change(function () {
+     var url = $("#signupForm").attr("data-region-url");
+     var countryId = $(this).val();
+     /* clear up these fields first */
+     $("#id_departamento").html('<option value=""></option>');
+     $("#id_provincia").html('<option value=""></option>');
+     $("#id_distrito").html('<option value=""></option>');
+     $.ajax({
+         url: url,
+         data: {
+             'what_to_load' : 'departamento',
+             'country': countryId
+         },
+         success: function (data) {
+             $("#id_departamento").html(data);
+         }
+     });
+ });
+
+ $("#id_departamento").change(function () {
+     var url = $("#signupForm").attr("data-region-url");
+     var countryId = $("#id_country").val();
+     var departamentoId = $(this).val()
+     /* clear up these fields first */
+     $("#id_provincia").html('<option value=""></option>');
+     $("#id_distrito").html('<option value=""></option>');
+     $.ajax({
+         url: url,
+         data: {
+             'what_to_load' : 'provincia',
+             'country': countryId,
+             'departamento' : departamentoId
+         },
+         success: function (data) {
+             $("#id_provincia").html(data);
+         }
+     });
+ });
+
+ $("#id_provincia").change(function () {
+     var url = $("#signupForm").attr("data-region-url");
+     var countryId = $("#id_country").val();
+     var departamentoId = $("#id_departamento").val()
+     var provinciaId = $(this).val()
+     /* clear up the field first */
+     $("#id_distrito").html('<option value=""></option>');
+     $.ajax({
+         url: url,
+         data: {
+             'what_to_load' : 'distrito',
+             'country': countryId,
+             'departamento' : departamentoId,
+             'provincia' : provinciaId
+         },
+         success: function (data) {
+             $("#id_distrito").html(data);
+         }
+     });
+ });
+
+ $("#id_birthdate").datepicker({dateFormat: "dd/mm/yy", changeYear: true, yearRange:'c-80:c+0'});
+
+</script>
+
+{% endblock %}
